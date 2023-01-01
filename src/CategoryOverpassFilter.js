@@ -169,7 +169,16 @@ class CategoryOverpassFilter {
   }
 
   applyParam (param) {
-    this.additionalFilter = Object.keys(param).map(k => {
+    const v = {}
+    for (const k in param) {
+      const m = k.match(/^config\.(.*)$/)
+      if (!m) {
+        v[k] = param[k]
+      }
+    }
+    console.log(v)
+
+    this.additionalFilter = Object.keys(v).map(k => {
       let values = param[k]
       const d = this.data[k]
 
