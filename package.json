@@ -1,0 +1,19 @@
+{
+  "name": "@geowiki-net/geowiki-module-filter",
+  "version": "1.0.0",
+  "description": "Add an interface to filter map features",
+  "main": "src/CategoryOverpassFilter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geowiki-net/geowiki-module-filter.git"
+  },
+  "author": "Stephan Bösch-Plepelits <skunk@xover.mud.at>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/geowiki-net/geowiki-module-filter/issues"
+  },
+  "homepage": "https://github.com/geowiki-net/geowiki-module-filter#readme"
+}
