@@ -18,7 +18,7 @@ CategoryOverpass.defaultValues.filter = {
   }
 }
 
-class CategoryOverpassFilter {
+class GeowikiFilter {
   constructor (master) {
     this.master = master
     this.data = this.master.data.filter

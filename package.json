@@ -2,7 +2,7 @@
   "name": "@geowiki-net/geowiki-module-filter",
   "version": "1.0.0",
   "description": "Add an interface to filter map features",
-  "main": "src/CategoryOverpassFilter.js",
+  "main": "src/GeowikiFilter.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
