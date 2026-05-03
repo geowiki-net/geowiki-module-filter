@@ -9,11 +9,14 @@ module.exports = {
   id: 'filter',
   appInit: (_app) => {
     app = _app
-  },
-  layerInit: (layer) => {
-    if (layer.data.filter) {
-      new GeowikiFilter(layer)
-    }
+
+    app.on('leaflet-geowiki-create', (layer) => {
+      layer.on('load', () => {
+        if (layer.data.filter) {
+          new GeowikiFilter(layer)
+        }
+      })
+    })
   }
 }
 
