@@ -1,5 +1,4 @@
 const Twig = require('twig')
-const tabs = require('modulekit-tabs')
 const natsort = require('natsort').default
 
 const Filter = require('@geowiki-net/geowiki-api').Filter
@@ -17,22 +16,6 @@ class GeowikiFilter {
   constructor (master) {
     this.master = master
     this.data = this.master.data.filter
-
-    this.tabFilter = new tabs.Tab({
-      id: 'filter'
-    })
-    this.master.tools.add(this.tabFilter)
-
-    this.tabFilter.header.innerHTML = '<i class="fa fa-filter" aria-hidden="true"></i>'
-    this.tabFilter.header.title = lang('filter')
-
-    this.domFilter = document.createElement('form')
-    this.tabFilter.content.appendChild(this.domFilter)
-
-    this.tabFilter.on('select', () => {
-      this.formFilter.resize()
-      this.formFilter.focus()
-    })
 
     for (const k in this.data) {
       const f = this.data[k]
@@ -154,10 +137,6 @@ class GeowikiFilter {
       }
 
       this.applyParam(v)
-
-      if (Object.keys(v).length && !this.tabFilter.isSelected()) {
-        this.tabFilter.select()
-      }
     })
     this.master.on('open', this.openCategory.bind(this))
     this.master.on('stateGet', this.stateGet.bind(this))
@@ -166,6 +145,11 @@ class GeowikiFilter {
         result.filter = this.formFilter.get_data()
       }
     )
+  }
+
+  onSelect () {
+    this.formFilter.resize()
+    this.formFilter.focus()
   }
 
   setParam (param) {
