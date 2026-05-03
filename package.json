@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/geowiki-net/geowiki-module-filter/issues"
   },
-  "homepage": "https://github.com/geowiki-net/geowiki-module-filter#readme"
+  "homepage": "https://github.com/geowiki-net/geowiki-module-filter#readme",
+  "dependencies": {
+    "@geowiki-net/geowiki-api": "*",
+    "natsort": "^2.0.3"
+  }
 }

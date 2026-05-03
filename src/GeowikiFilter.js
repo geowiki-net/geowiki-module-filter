@@ -1,10 +1,9 @@
-const OverpassLayer = require('@geowiki-net/leaflet-geowiki-layer')
+const Twig = require('twig')
 const tabs = require('modulekit-tabs')
 const natsort = require('natsort').default
 
 const state = require('./state')
 const Filter = require('@geowiki-net/geowiki-api').Filter
-const getPathFromJSON = require('./getPathFromJSON')
 const CategoryOverpass = require('./CategoryOverpass')
 
 CategoryOverpass.defaultValues.filter = {
@@ -43,21 +42,21 @@ class GeowikiFilter {
       const f = this.data[k]
       if ('name' in f && typeof f.name === 'string') {
         global.currentCategory = this.master
-        const t = OverpassLayer.twig.twig({ data: f.name, autoescape: true })
+        const t = Twig.twig({ data: f.name, autoescape: true })
         f.name = decodeHTML(t.render({}).toString())
       } else if (!('name' in f)) {
         f.name = lang('tag:' + k)
       }
 
       if ('query' in f) {
-        f.queryTemplate = OverpassLayer.twig.twig({ data: f.query, autoescape: false })
+        f.queryTemplate = Twig.twig({ data: f.query, autoescape: false })
       }
 
       if ('values' in f) {
-        const valueNameTemplate = OverpassLayer.twig.twig({ data: f.valueName || '{{ value }}', autoescape: true })
+        const valueNameTemplate = Twig.twig({ data: f.valueName || '{{ value }}', autoescape: true })
 
         if (typeof f.values === 'string') {
-          const valuesTemplate = OverpassLayer.twig.twig({ data: f.values, autoescape: true })
+          const valuesTemplate = Twig.twig({ data: f.values, autoescape: true })
           const div = document.createElement('div')
           div.innerHTML = valuesTemplate.render(this.master.data)
 
@@ -89,13 +88,13 @@ class GeowikiFilter {
         } else if (typeof f.values === 'object') {
           for (const k1 in f.values) {
             if (typeof f.values[k1] === 'string') {
-              const t = OverpassLayer.twig.twig({ data: f.values[k1], autoescape: true })
+              const t = Twig.twig({ data: f.values[k1], autoescape: true })
               f.values[k1] = decodeHTML(t.render({}).toString())
             } else if (typeof f.values[k1] === 'object') {
               if (!('name' in f.values[k1])) {
                 f.values[k1].name = decodeHTML(valueNameTemplate.render({ value: k1 }).toString())
               } else if (f.values[k1].name) {
-                const t = OverpassLayer.twig.twig({ data: f.values[k1].name, autoescape: true })
+                const t = Twig.twig({ data: f.values[k1].name, autoescape: true })
                 f.values[k1].name = decodeHTML(t.render({}))
               }
             }
@@ -123,7 +122,7 @@ class GeowikiFilter {
       }
 
       if ('placeholder' in f && typeof f.placeholder === 'string') {
-        const t = OverpassLayer.twig.twig({ data: f.placeholder, autoescape: true })
+        const t = Twig.twig({ data: f.placeholder, autoescape: true })
         f.placeholder = decodeHTML(t.render({}).toString())
       }
     }
