@@ -9,6 +9,11 @@ module.exports = {
   id: 'filter',
   appInit: (_app) => {
     app = _app
+  },
+  layerInit: (layer) => {
+    if (layer.data.filter) {
+      new GeowikiFilter(layer)
+    }
   }
 }
 
@@ -254,12 +259,6 @@ class GeowikiFilter {
     }
   }
 }
-
-register_hook('category-overpass-init', (category) => {
-  if (category.data.filter) {
-    new CategoryOverpassFilter(category)
-  }
-})
 
 function decodeHTML (str) {
   if (typeof str === 'undefined') {
