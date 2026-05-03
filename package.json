@@ -18,6 +18,7 @@
   "homepage": "https://github.com/geowiki-net/geowiki-module-filter#readme",
   "dependencies": {
     "@geowiki-net/geowiki-api": "*",
+    "@geowiki-net/geowiki-lib-app": "github:geowiki-net/geowiki-lib-app",
     "natsort": "^2.0.3"
   }
 }

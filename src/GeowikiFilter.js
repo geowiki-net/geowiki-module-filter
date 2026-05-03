@@ -1,11 +1,11 @@
 const Twig = require('twig')
 const natsort = require('natsort').default
+const App = require('@geowiki-net/geowiki-lib-app')
 
 const Filter = require('@geowiki-net/geowiki-api').Filter
 
 let app
-
-module.exports = {
+App.addModule({
   id: 'filter',
   appInit: (_app) => {
     app = _app
@@ -18,7 +18,7 @@ module.exports = {
       })
     })
   }
-}
+})
 
 class GeowikiFilter {
   constructor (master) {
