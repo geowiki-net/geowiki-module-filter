@@ -4,18 +4,6 @@ const natsort = require('natsort').default
 
 const state = require('./state')
 const Filter = require('@geowiki-net/geowiki-api').Filter
-const CategoryOverpass = require('./CategoryOverpass')
-
-CategoryOverpass.defaultValues.filter = {
-  title: {
-    type: 'text',
-    key: ['name', 'name:*', 'operator', 'operator:*', 'ref', 'ref:*'],
-    name: '{{ trans("filter:title") }}',
-    op: 'strsearch',
-    weight: -1,
-    show_default: true
-  }
-}
 
 class GeowikiFilter {
   constructor (master) {
