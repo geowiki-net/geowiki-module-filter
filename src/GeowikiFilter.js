@@ -2,8 +2,16 @@ const Twig = require('twig')
 const tabs = require('modulekit-tabs')
 const natsort = require('natsort').default
 
-const state = require('./state')
 const Filter = require('@geowiki-net/geowiki-api').Filter
+
+let app
+
+module.exports = {
+  id: 'filter',
+  appInit: (_app) => {
+    app = _app
+  }
+}
 
 class GeowikiFilter {
   constructor (master) {
@@ -132,7 +140,7 @@ class GeowikiFilter {
 
       this.applyParam(param)
 
-      state.update()
+      app.updateLink()
     }
 
     this.master.on('setParam', this.setParam.bind(this))
